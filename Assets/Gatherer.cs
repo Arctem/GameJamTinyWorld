@@ -5,8 +5,8 @@ public class Gatherer : MonoBehaviour {
 
 	public float speed = 2f;
 	public float turnSpeed = 100f;
+	public GameObject owner;
 	private Rigidbody rigidbody;
-	private GameObject owner;
 	private GameObject target;
 
 	// Use this for initialization
@@ -49,6 +49,16 @@ public class Gatherer : MonoBehaviour {
 				}
 			}
 			target = currentBest;
+		}
+	}
+
+	void OnCollisionEnter (Collision collision) {
+		if (collision.gameObject == target) {
+			if (target == owner) {
+				target = null;
+			} else {
+				target = owner;
+			}
 		}
 	}
 }

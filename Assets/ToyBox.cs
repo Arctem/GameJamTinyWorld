@@ -7,10 +7,14 @@ public class ToyBox : MonoBehaviour {
 	public float turnSpeed = 10f;
 	public string powerAxisName = "Vertical";
 	public string turnAxisName = "Horizontal";
-	public GameObject gathererPrefab;
+	public Gatherer gathererPrefab;
 	public GameObject hunterPrefab;
 	public GameObject revengePrefab;
 	public GameObject cannonPrefab;
+	public string gathererButton = "1";
+	public string hunterButton = "2";
+	public string revengeButton = "3";
+	public string cannonButton = "4";
 	private float powerInput;
 	private float turnInput;
 	private Rigidbody carRigidbody;
@@ -24,6 +28,21 @@ public class ToyBox : MonoBehaviour {
 	void Update () {
 		powerInput = Input.GetAxis (powerAxisName);
 		turnInput = Input.GetAxis (turnAxisName);
+		if (Input.GetKeyDown (gathererButton)) {
+			Gatherer clone = (Gatherer) Instantiate(gathererPrefab,
+				carRigidbody.position + new Vector3(0f, 5f, 0f), carRigidbody.rotation);
+			clone.owner = this.gameObject;
+			clone.GetComponent <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
+		}
+		if (Input.GetKeyDown (hunterButton)) {
+
+		}
+		if (Input.GetKeyDown (revengeButton)) {
+
+		}
+		if (Input.GetKeyDown (cannonButton)) {
+
+		}
 	}
 
 	void FixedUpdate () {
