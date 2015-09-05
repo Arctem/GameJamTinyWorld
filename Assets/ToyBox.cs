@@ -7,6 +7,10 @@ public class ToyBox : MonoBehaviour {
 	public float turnSpeed = 10f;
 	public string powerAxisName = "Vertical";
 	public string turnAxisName = "Horizontal";
+	public GameObject gathererPrefab;
+	public GameObject hunterPrefab;
+	public GameObject revengePrefab;
+	public GameObject cannonPrefab;
 	private float powerInput;
 	private float turnInput;
 	private Rigidbody carRigidbody;
