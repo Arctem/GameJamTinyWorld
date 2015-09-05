@@ -17,8 +17,10 @@ ModelImporter:
     400008: trainBlue
     2300000: Cube
     2300002: trainBlue
+    2300004: //RootNode
     3300000: Cube
     3300002: trainBlue
+    3300004: //RootNode
     4300000: Cube
     4300002: trainBlue
     9500000: //RootNode
