@@ -25,6 +25,10 @@ public class ToyBox : MonoBehaviour {
 	void FixedUpdate () {
 		carRigidbody.AddRelativeForce(0f, 0f, powerInput * speed);
 		carRigidbody.AddRelativeTorque(0f, turnInput * turnSpeed, 0f);
-		carRigidbody.velocity = carRigidbody.transform.forward * carRigidbody.velocity.magnitude;
+		if (Vector3.Angle (carRigidbody.transform.forward, carRigidbody.velocity) <= 90) {
+			carRigidbody.velocity = carRigidbody.transform.forward * carRigidbody.velocity.magnitude;
+		} else {
+			carRigidbody.velocity = -carRigidbody.transform.forward * carRigidbody.velocity.magnitude;
+		}
 	}
 }
