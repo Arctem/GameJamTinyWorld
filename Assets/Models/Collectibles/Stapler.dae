@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.75.0 commit date:2015-07-07, commit time:14:56, hash:c27589e</authoring_tool>
+    </contributor>
+    <created>2015-09-05T05:50:35</created>
+    <modified>2015-09-05T05:50:35</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="Stapler-mesh" name="Stapler">
+      <mesh>
+        <source id="Stapler-mesh-positions">
+          <float_array id="Stapler-mesh-positions-array" count="84">2.290552 -0.04394859 0.2837604 -1.697248 -0.04394859 0.2837604 2.290552 0.2369213 0.2837604 -1.697248 0.2369213 0.2837604 2.290552 0.2369213 0 -1.697248 0.2369213 0 2.290552 -0.04394859 0 2.290552 0.2369213 0.9862396 2.290552 0.2369213 1.27 -1.697248 0.2369213 0.9862396 -1.697248 0.2369213 1.27 2.290552 -0.04394859 0.9862396 -1.697248 -0.04394859 0.9862396 2.290552 -0.04394859 1.27 -1.697248 0.9568406 0 -1.697248 0.9568406 1.27 3.045871 0.9568406 1.27 3.045871 -0.4908257 1.27 2.321101 -0.04394859 1.27 2.321101 -0.2431192 1.27 -1.697248 -0.4908257 1.27 -1.697248 -0.2431192 1.27 2.321101 -0.04394859 0 3.045871 -0.4908257 0 3.045871 0.9568406 0 -1.697248 -0.4908257 0 -1.697248 -0.2431192 0 2.321101 -0.2431192 0</float_array>
+          <technique_common>
+            <accessor source="#Stapler-mesh-positions-array" count="28" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Stapler-mesh-normals">
+          <float_array id="Stapler-mesh-normals-array" count="21">0 0 -1 0 -1 0 -1 0 0 0 0 1 -1 -2.60767e-7 0 1 0 0 0 1 0</float_array>
+          <technique_common>
+            <accessor source="#Stapler-mesh-normals-array" count="7" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Stapler-mesh-vertices">
+          <input semantic="POSITION" source="#Stapler-mesh-positions"/>
+        </vertices>
+        <polylist count="52">
+          <input semantic="VERTEX" source="#Stapler-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Stapler-mesh-normals" offset="1"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>0 0 1 0 2 0 2 0 1 0 3 0 4 1 2 1 5 1 5 1 2 1 3 1 2 2 4 2 0 2 0 2 4 2 6 2 7 1 8 1 9 1 9 1 8 1 10 1 7 3 9 3 11 3 11 3 9 3 12 3 8 2 7 2 13 2 13 2 7 2 11 2 5 2 3 2 14 2 14 2 3 2 9 2 15 2 9 2 10 2 15 4 14 4 9 4 1 2 12 2 3 2 3 2 12 2 9 2 10 3 8 3 15 3 15 3 8 3 16 3 16 3 8 3 17 3 17 3 8 3 18 3 19 3 17 3 18 3 19 3 20 3 17 3 19 3 21 3 20 3 8 3 13 3 18 3 12 1 1 1 11 1 11 1 1 1 0 1 22 1 0 1 6 1 22 1 11 1 0 1 22 1 18 1 11 1 11 1 18 1 13 1 17 5 23 5 16 5 16 5 23 5 24 5 20 1 25 1 17 1 17 1 25 1 23 1 21 2 26 2 20 2 20 2 26 2 25 2 19 6 27 6 21 6 21 6 27 6 26 6 18 2 22 2 19 2 19 2 22 2 27 2 16 6 24 6 15 6 15 6 24 6 14 6 5 0 14 0 4 0 4 0 14 0 24 0 23 0 4 0 24 0 23 0 22 0 4 0 23 0 27 0 22 0 23 0 25 0 27 0 27 0 25 0 26 0 22 0 6 0 4 0</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Stapler" name="Stapler" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Stapler-mesh" name="Stapler"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
