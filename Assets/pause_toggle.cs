@@ -19,5 +19,9 @@ public class pause_toggle : MonoBehaviour {
 			else
 				Time.timeScale = 1.0F;
 		}
+		if (Time.timeScale == 0.0F && Input.GetKeyDown (KeyCode.Escape)) {
+			Time.timeScale = 1.0F;
+			Application.LoadLevel (0);
+		}
 	}
 }
