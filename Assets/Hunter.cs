@@ -17,16 +17,21 @@ public class Hunter : MonoBehaviour {
 	private GameObject target;
 	private float jumpTimer = 0f;
 	private float shootTimer = 0f;
+	//sound
+	public AudioClip SpawnSound;
+	public AudioClip DeathSound;
+	public AudioClip ActionSound; 
 
 	// Use this for initialization
 	void Start () {
 		rigidbody = GetComponent <Rigidbody>();
+		AudioSource.PlayClipAtPoint (SpawnSound, rigidbody.transform.position);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (health <= 0) {
-			//AudioSource.PlayClipAtPoint (DeathSound, rigidbody.transform.position);
+			AudioSource.PlayClipAtPoint (DeathSound, rigidbody.transform.position);
 			Destroy (gameObject);
 		}
 	}
@@ -54,6 +59,7 @@ public class Hunter : MonoBehaviour {
 						jumpTimer = jumpCooldown;
 					}
 				} else if (target != owner && shootTimer < 0) {
+					AudioSource.PlayClipAtPoint (ActionSound , rigidbody.transform.position);
 					Bullet clone = (Bullet) Instantiate(bulletPrefab,
                   		rigidbody.position + transform.forward * 2 + new Vector3(0f, 1f, 0f),
                         rigidbody.rotation);
