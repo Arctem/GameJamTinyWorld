@@ -73,7 +73,11 @@ public class Hunter : MonoBehaviour {
 			GameObject[] possibles = GameObject.FindGameObjectsWithTag("Gatherer").Concat(GameObject.FindGameObjectsWithTag("Cannon")).ToArray();
 			GameObject currentBest = null;
 			foreach(GameObject test in possibles) {
-				if (owner == (test.GetComponent <Gatherer>().owner)) {
+				if (test.GetComponent <Gatherer>()) {
+					if (owner == test.GetComponent <Gatherer>().owner) {
+						continue;
+					}
+				} else if(test.GetComponent<Catapult> () && owner == test.GetComponent <Catapult>().owner){
 					continue;
 				}
 				if (currentBest) {

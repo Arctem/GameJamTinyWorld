@@ -11,7 +11,7 @@ public class ToyBox : MonoBehaviour {
 	public Gatherer gathererPrefab;
 	public Hunter hunterPrefab;
 	public Revenge revengePrefab;
-	public GameObject cannonPrefab;
+	public Catapult cannonPrefab;
 	public string gathererButton = "1";
 	public string hunterButton = "2";
 	public string revengeButton = "3";
@@ -54,7 +54,7 @@ public class ToyBox : MonoBehaviour {
 			clone.GetComponentInChildren <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 		}
 		if (Input.GetKeyDown (revengeButton) && metal > 10000) {
-			metal -= 10000
+			metal -= 10000;
 			Revenge clone = (Revenge) Instantiate(revengePrefab,
       			carRigidbody.position + new Vector3(0f, 20f, 0f), carRigidbody.rotation);
 			clone.owner = this.gameObject;
@@ -62,7 +62,11 @@ public class ToyBox : MonoBehaviour {
 			revenges.Add(clone);
 		}
 		if (Input.GetKeyDown (cannonButton)) {
-
+			metal -= 15000;
+			Catapult clone = (Catapult) Instantiate(cannonPrefab,
+            	carRigidbody.position + new Vector3(0f, 5f, 0f), carRigidbody.rotation);
+			clone.owner = this.gameObject;
+			clone.GetComponentInChildren <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 		}
 	}
 
