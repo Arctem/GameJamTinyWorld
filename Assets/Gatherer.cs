@@ -36,7 +36,6 @@ public class Gatherer : MonoBehaviour {
 			}
 		} else {
 			GameObject[] possibles = GameObject.FindGameObjectsWithTag("Resource");
-			print (possibles);
 			GameObject currentBest = null;
 			foreach(GameObject test in possibles) {
 				if (currentBest) {
@@ -59,6 +58,8 @@ public class Gatherer : MonoBehaviour {
 			} else {
 				target = owner;
 			}
+		} else if (collision.gameObject.tag == "Bullet") {
+			Destroy (gameObject);
 		}
 	}
 }

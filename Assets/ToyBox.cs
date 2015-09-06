@@ -8,7 +8,7 @@ public class ToyBox : MonoBehaviour {
 	public string powerAxisName = "Vertical";
 	public string turnAxisName = "Horizontal";
 	public Gatherer gathererPrefab;
-	public GameObject hunterPrefab;
+	public Hunter hunterPrefab;
 	public GameObject revengePrefab;
 	public GameObject cannonPrefab;
 	public string gathererButton = "1";
@@ -35,7 +35,10 @@ public class ToyBox : MonoBehaviour {
 			clone.GetComponent <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 		}
 		if (Input.GetKeyDown (hunterButton)) {
-
+			Hunter clone = (Hunter) Instantiate(hunterPrefab,
+				carRigidbody.position + new Vector3(0f, 5f, 0f), carRigidbody.rotation);
+			clone.owner = this.gameObject;
+			clone.GetComponentInChildren <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 		}
 		if (Input.GetKeyDown (revengeButton)) {
 
