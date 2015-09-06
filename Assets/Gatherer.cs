@@ -64,6 +64,7 @@ public class Gatherer : MonoBehaviour {
 	void OnCollisionEnter (Collision collision) {
 		if (collision.gameObject == target) {
 			if (target == owner) {
+				owner.GetComponent<ToyBox>().metal += 100;
 				target = null;
 			} else {
 				AudioSource.PlayClipAtPoint(ActionSound, rigidbody.transform.position);
