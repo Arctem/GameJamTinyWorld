@@ -19,8 +19,7 @@ public class ToyBox : MonoBehaviour {
 	private float turnInput;
 	private Rigidbody carRigidbody;
 	private int ReadyForAnotherShwoo = 0;
-	public int Health = 100; 
-	public bool dead = false;
+	public int health = 100;
 
 	//Sounds
 	public AudioClip MoveSound;
@@ -64,9 +63,9 @@ public class ToyBox : MonoBehaviour {
 		if (ReadyForAnotherShwoo > 0) {
 			ReadyForAnotherShwoo--;
 		}
-		if (Health == 0 && !dead) {
+		if (health == 0) {
 			AudioSource.PlayClipAtPoint (DeathSound, carRigidbody.transform.position);
-			dead = true; 
+			Destroy (gameObject);
 		}
 		carRigidbody.AddRelativeForce(0f, 0f, powerInput * speed);
 		carRigidbody.AddRelativeTorque(0f, turnInput * turnSpeed, 0f);
@@ -74,6 +73,12 @@ public class ToyBox : MonoBehaviour {
 			carRigidbody.velocity = carRigidbody.transform.forward * carRigidbody.velocity.magnitude;
 		} else {
 			carRigidbody.velocity = -carRigidbody.transform.forward * carRigidbody.velocity.magnitude;
+		}
+	}
+
+	void OnCollisionEnter (Collision collision) {
+		if (collision.gameObject.tag == "Bullet") {
+			health--;
 		}
 	}
 }
