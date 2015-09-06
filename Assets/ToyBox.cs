@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ToyBox : MonoBehaviour {
 
@@ -9,17 +10,18 @@ public class ToyBox : MonoBehaviour {
 	public string turnAxisName = "Horizontal";
 	public Gatherer gathererPrefab;
 	public Hunter hunterPrefab;
-	public GameObject revengePrefab;
+	public Revenge revengePrefab;
 	public GameObject cannonPrefab;
 	public string gathererButton = "1";
 	public string hunterButton = "2";
 	public string revengeButton = "3";
 	public string cannonButton = "4";
+	public int health = 100;
+	public List<Revenge> revenges = new List<Revenge>();
 	private float powerInput;
 	private float turnInput;
 	private Rigidbody carRigidbody;
 	private int ReadyForAnotherShwoo = 0;
-	public int health = 100;
 
 	//Sounds
 	public AudioClip MoveSound;
@@ -48,7 +50,11 @@ public class ToyBox : MonoBehaviour {
 			clone.GetComponentInChildren <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 		}
 		if (Input.GetKeyDown (revengeButton)) {
-
+			Revenge clone = (Revenge) Instantiate(revengePrefab,
+      			carRigidbody.position + new Vector3(0f, 20f, 0f), carRigidbody.rotation);
+			clone.owner = this.gameObject;
+			clone.GetComponent <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
+			revenges.Add(clone);
 		}
 		if (Input.GetKeyDown (cannonButton)) {
 
