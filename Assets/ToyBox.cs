@@ -18,10 +18,18 @@ public class ToyBox : MonoBehaviour {
 	private float powerInput;
 	private float turnInput;
 	private Rigidbody carRigidbody;
+	private int ReadyForAnotherShwoo = 0;
+	public int Health = 100; 
+	public bool dead = false;
+
+	//Sounds
+	public AudioClip MoveSound;
+	public AudioClip DeathSound;
 
 	// Use this for initialization
 	void Start () {
 		carRigidbody = GetComponent <Rigidbody>();
+		print (MoveSound);
 	}
 	
 	// Update is called once per frame
@@ -46,6 +54,17 @@ public class ToyBox : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if (powerInput > 0 && ReadyForAnotherShwoo == 0) {
+			AudioSource.PlayClipAtPoint(MoveSound, carRigidbody.transform.position);
+			ReadyForAnotherShwoo += 100;
+		}
+		if (ReadyForAnotherShwoo > 0) {
+			ReadyForAnotherShwoo--;
+		}
+		if (Health == 0 && !dead) {
+			AudioSource.PlayClipAtPoint (DeathSound, carRigidbody.transform.position);
+			dead = true; 
+		}
 		carRigidbody.AddRelativeForce(0f, 0f, powerInput * speed);
 		carRigidbody.AddRelativeTorque(0f, turnInput * turnSpeed, 0f);
 		if (Vector3.Angle (carRigidbody.transform.forward, carRigidbody.velocity) <= 90) {
