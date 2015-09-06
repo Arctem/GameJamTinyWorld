@@ -21,6 +21,7 @@ public class ToyBox : MonoBehaviour {
 	private float powerInput;
 	private float turnInput;
 	private Rigidbody carRigidbody;
+	private int metal = 10000;
 	private int ReadyForAnotherShwoo = 0;
 
 	//Sounds
@@ -35,21 +36,25 @@ public class ToyBox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		metal++;
 		powerInput = Input.GetAxis (powerAxisName);
 		turnInput = Input.GetAxis (turnAxisName);
-		if (Input.GetKeyDown (gathererButton)) {
+		if (Input.GetKeyDown (gathererButton) && metal > 2000) {
+			metal -= 2000;
 			Gatherer clone = (Gatherer) Instantiate(gathererPrefab,
 				carRigidbody.position + new Vector3(0f, 5f, 0f), carRigidbody.rotation);
 			clone.owner = this.gameObject;
 			clone.GetComponent <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 		}
-		if (Input.GetKeyDown (hunterButton)) {
+		if (Input.GetKeyDown (hunterButton) && metal > 6000) {
+			metal -= 6000;
 			Hunter clone = (Hunter) Instantiate(hunterPrefab,
 				carRigidbody.position + new Vector3(0f, 5f, 0f), carRigidbody.rotation);
 			clone.owner = this.gameObject;
 			clone.GetComponentInChildren <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 		}
-		if (Input.GetKeyDown (revengeButton)) {
+		if (Input.GetKeyDown (revengeButton) && metal > 10000) {
+			metal -= 10000
 			Revenge clone = (Revenge) Instantiate(revengePrefab,
       			carRigidbody.position + new Vector3(0f, 20f, 0f), carRigidbody.rotation);
 			clone.owner = this.gameObject;
