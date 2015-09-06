@@ -36,7 +36,11 @@ public class ToyBox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		metal += Time.deltaTime;
+		if (metal < 10) {
+			metal += Time.deltaTime;
+		} else {
+			metal += Time.deltaTime / 4.0f;
+		}
 
 		powerInput = Input.GetAxis (powerAxisName);
 		turnInput = Input.GetAxis (turnAxisName);
