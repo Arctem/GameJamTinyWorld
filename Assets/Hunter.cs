@@ -12,7 +12,7 @@ public class Hunter : MonoBehaviour {
 	public float bulletSpeed = 30f;
 	public GameObject owner;
 	public Bullet bulletPrefab;
-	public int health = 1;
+	public int health = 2;
 	private Rigidbody rigidbody;
 	private GameObject target;
 	private float jumpTimer = 0f;

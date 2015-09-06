@@ -8,7 +8,7 @@ public class Catapult : MonoBehaviour {
 	public GameObject owner;
 	private Rigidbody catRigidbody;
 	private GameObject target;
-	public int health = 3;
+	public int health = 5;
 
 	public float shootRange = 60f;
 	public float shootCooldown = 0.5f;
