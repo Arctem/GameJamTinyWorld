@@ -92,6 +92,10 @@ public class Hunter : MonoBehaviour {
 	void OnCollisionEnter (Collision collision) {
 		if (collision.gameObject.tag == "Bullet" && collision.gameObject.GetComponent<Bullet>().owner != gameObject) {
 			health--;
+			owner.GetComponent<ToyBox>().DispatchRevenge(collision.gameObject.GetComponent <Bullet>().owner);
+		} else if (collision.gameObject.tag == "Missile") {
+			health--;
+			owner.GetComponent<ToyBox>().DispatchRevenge(collision.gameObject.GetComponent <Missile>().owner);
 		}
 	}
 }

@@ -82,9 +82,20 @@ public class ToyBox : MonoBehaviour {
 		}
 	}
 
+	//Check list of Revengebots and send one after aggressor if there's a free one.
+	public void DispatchRevenge (GameObject aggressor) {
+		foreach (Revenge rev in revenges) {
+			if(!rev.target || rev.target == gameObject) {
+				rev.target = aggressor;
+				return;
+			}
+		}
+	}
+
 	void OnCollisionEnter (Collision collision) {
 		if (collision.gameObject.tag == "Bullet") {
 			health--;
+			DispatchRevenge(collision.gameObject.GetComponent <Bullet>().owner);
 		}
 	}
 }

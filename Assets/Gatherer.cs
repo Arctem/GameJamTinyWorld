@@ -71,6 +71,10 @@ public class Gatherer : MonoBehaviour {
 			}
 		} else if (collision.gameObject.tag == "Bullet") {
 			health--;
+			owner.GetComponent<ToyBox>().DispatchRevenge(collision.gameObject.GetComponent <Bullet>().owner);
+		} else if (collision.gameObject.tag == "Missile") {
+			health--;
+			owner.GetComponent<ToyBox>().DispatchRevenge(collision.gameObject.GetComponent <Missile>().owner);
 		}
 	}
 }
