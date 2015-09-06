@@ -57,11 +57,11 @@ public class Revenge : MonoBehaviour {
 				Missile clone = (Missile)Instantiate (missilePrefab,
 		            planeRigidbody.position + transform.up * -2,
 		            planeRigidbody.rotation);
-				AudioSource.PlayClipAtPoint (ActionSound, planeRigidbody.transform.position);
 				clone.owner = this.gameObject;
 				clone.target = target;
 				shootTimer = shootCooldown;
 				target = null;
+				AudioSource.PlayClipAtPoint (ActionSound, planeRigidbody.transform.position);
 			}
 		}
 	}
