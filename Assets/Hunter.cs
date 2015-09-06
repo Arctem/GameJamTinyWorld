@@ -12,6 +12,7 @@ public class Hunter : MonoBehaviour {
 	public float bulletSpeed = 10f;
 	public GameObject owner;
 	public Bullet bulletPrefab;
+	public int health = 1;
 	private Rigidbody rigidbody;
 	private GameObject target;
 	private float jumpTimer = 0f;
@@ -24,7 +25,10 @@ public class Hunter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (health <= 0) {
+			//AudioSource.PlayClipAtPoint (DeathSound, rigidbody.transform.position);
+			Destroy (gameObject);
+		}
 	}
 
 	void FixedUpdate () {
@@ -81,7 +85,7 @@ public class Hunter : MonoBehaviour {
 
 	void OnCollisionEnter (Collision collision) {
 		if (collision.gameObject.tag == "Bullet" && collision.gameObject.GetComponent<Bullet>().owner != gameObject) {
-			Destroy (gameObject);
+			health--;
 		}
 	}
 }

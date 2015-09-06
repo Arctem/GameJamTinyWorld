@@ -9,7 +9,6 @@ public class Gatherer : MonoBehaviour {
 	private Rigidbody rigidbody;
 	private GameObject target;
 	public int health = 3;
-	public bool dead = false; 
 	//Sounds
 	public AudioClip SpawnSound;
 	public AudioClip DeathSound;
@@ -23,9 +22,9 @@ public class Gatherer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (health <= 0 && !dead) {
+		if (health <= 0) {
 			AudioSource.PlayClipAtPoint (DeathSound, rigidbody.transform.position);
-			dead = true; 
+			Destroy (gameObject);
 		}
 	}
 
@@ -71,7 +70,7 @@ public class Gatherer : MonoBehaviour {
 				target = owner;
 			}
 		} else if (collision.gameObject.tag == "Bullet") {
-			Destroy (gameObject);
+			health--;
 		}
 	}
 }
