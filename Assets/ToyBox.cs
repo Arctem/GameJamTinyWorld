@@ -21,7 +21,7 @@ public class ToyBox : MonoBehaviour {
 	private float powerInput;
 	private float turnInput;
 	private Rigidbody carRigidbody;
-	public float metal = 100000f;
+	public float metal = 20f;
 	private int ReadyForAnotherShwoo = 0;
 
 	//Sounds
@@ -37,32 +37,33 @@ public class ToyBox : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		metal += Time.deltaTime;
+
 		powerInput = Input.GetAxis (powerAxisName);
 		turnInput = Input.GetAxis (turnAxisName);
-		if (Input.GetKeyDown (gathererButton) && metal > 200) {
-			metal -= 200;
+		if (Input.GetKeyDown (gathererButton) && metal > 10) {
+			metal -= 10;
 			Gatherer clone = (Gatherer) Instantiate(gathererPrefab,
 				carRigidbody.position + new Vector3(0f, 5f, 0f), carRigidbody.rotation);
 			clone.owner = this.gameObject;
 			clone.GetComponent <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 		}
-		if (Input.GetKeyDown (hunterButton) && metal > 600) {
-			metal -= 600;
+		if (Input.GetKeyDown (hunterButton) && metal > 30) {
+			metal -= 30;
 			Hunter clone = (Hunter) Instantiate(hunterPrefab,
 				carRigidbody.position + new Vector3(0f, 5f, 0f), carRigidbody.rotation);
 			clone.owner = this.gameObject;
 			clone.GetComponentInChildren <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 		}
-		if (Input.GetKeyDown (revengeButton) && metal > 1000) {
-			metal -= 1000;
+		if (Input.GetKeyDown (revengeButton) && metal > 50) {
+			metal -= 50;
 			Revenge clone = (Revenge) Instantiate(revengePrefab,
       			carRigidbody.position + new Vector3(0f, 20f, 0f), carRigidbody.rotation);
 			clone.owner = this.gameObject;
 			clone.GetComponent <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 			revenges.Add(clone);
 		}
-		if (Input.GetKeyDown (cannonButton)) {
-			metal -= 15000;
+		if (Input.GetKeyDown (cannonButton) && metal > 70) {
+			metal -= 70;
 			Catapult clone = (Catapult) Instantiate(cannonPrefab,
             	carRigidbody.position + new Vector3(0f, 5f, 0f), carRigidbody.rotation);
 			clone.owner = this.gameObject;
