@@ -9,7 +9,7 @@ public class Hunter : MonoBehaviour {
 	public float turnSpeed = 100f;
 	public float shootRange = 20f;
 	public float shootCooldown = 3f;
-	public float bulletSpeed = 10f;
+	public float bulletSpeed = 30f;
 	public GameObject owner;
 	public Bullet bulletPrefab;
 	public int health = 1;
