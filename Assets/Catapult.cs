@@ -23,13 +23,13 @@ public class Catapult : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		catRigidbody = GetComponent <Rigidbody>();
-//		AudioSource.PlayClipAtPoint (SpawnSound, catRigidbody.transform.position);
+		AudioSource.PlayClipAtPoint (SpawnSound, catRigidbody.transform.position);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (health <= 0) {
-//			AudioSource.PlayClipAtPoint (DeathSound, catRigidbody.transform.position);
+			AudioSource.PlayClipAtPoint (DeathSound, catRigidbody.transform.position);
 			Destroy (gameObject);
 		}
 	}
@@ -51,13 +51,13 @@ public class Catapult : MonoBehaviour {
 			if(Mathf.Abs(offset.x) < 10.0 && offset.z > 0.0) {
 				//If we're facing mostly towards it and it's in front of us.
 				if(Vector3.Distance(catRigidbody.position, target.transform.position) < shootRange) {
-//					AudioSource.PlayClipAtPoint (ActionSound , catRigidbody.transform.position);
 					Bullet clone = (Bullet) Instantiate(bulletPrefab,
                         catRigidbody.position + transform.forward * 2 + new Vector3(0f, 1f, 0f),
                         catRigidbody.rotation);
 					clone.GetComponent <Rigidbody>().velocity = transform.forward * bulletSpeed;
 					clone.owner = this.gameObject;
 					shootTimer = shootCooldown;
+					AudioSource.PlayClipAtPoint (ActionSound , catRigidbody.transform.position);
 				} else {
 					this.catRigidbody.AddRelativeForce(0f, 0f, speed);
 				}

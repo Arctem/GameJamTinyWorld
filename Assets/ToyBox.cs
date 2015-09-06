@@ -39,7 +39,7 @@ public class ToyBox : MonoBehaviour {
 		if (metal < 10) {
 			metal += Time.deltaTime;
 		} else {
-			metal += Time.deltaTime / 4.0f;
+			metal += Time.deltaTime / 2.0f;
 		}
 
 		powerInput = Input.GetAxis (powerAxisName);
@@ -58,16 +58,16 @@ public class ToyBox : MonoBehaviour {
 			clone.owner = this.gameObject;
 			clone.GetComponentInChildren <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 		}
-		if (Input.GetKeyDown (revengeButton) && metal > 50) {
-			metal -= 50;
+		if (Input.GetKeyDown (revengeButton) && metal > 40) {
+			metal -= 40;
 			Revenge clone = (Revenge) Instantiate(revengePrefab,
       			carRigidbody.position + new Vector3(0f, 20f, 0f), carRigidbody.rotation);
 			clone.owner = this.gameObject;
 			clone.GetComponent <MeshRenderer>().material = this.GetComponent <MeshRenderer>().material;
 			revenges.Add(clone);
 		}
-		if (Input.GetKeyDown (cannonButton) && metal > 70) {
-			metal -= 70;
+		if (Input.GetKeyDown (cannonButton) && metal > 30) {
+			metal -= 30;
 			Catapult clone = (Catapult) Instantiate(cannonPrefab,
             	carRigidbody.position + new Vector3(0f, 5f, 0f), carRigidbody.rotation);
 			clone.owner = this.gameObject;
