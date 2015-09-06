@@ -85,6 +85,7 @@ public class ToyBox : MonoBehaviour {
 		}
 		if (health == 0) {
 			AudioSource.PlayClipAtPoint (DeathSound, carRigidbody.transform.position);
+			Time.timeScale = .2F; 
 			Destroy (gameObject);
 		}
 		carRigidbody.AddRelativeForce(0f, 0f, powerInput * speed);
