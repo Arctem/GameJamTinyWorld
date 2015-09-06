@@ -15,18 +15,23 @@ public class Revenge : MonoBehaviour {
 	private Rigidbody planeRigidbody;
 	public GameObject target = null;
 	private float shootTimer = 0f;
+	//Music
+	public AudioClip SpawnSound;
+	public AudioClip ActionSound;
+	public AudioClip DeathSound;
 
 	// Use this for initialization
 	void Start () {
 		planeRigidbody = GetComponent <Rigidbody> ();
 		planeRigidbody.velocity = planeRigidbody.transform.forward * minSpeed;
 		preferredAltitude = preferredAltitude * Random.Range (0.5f, 1.5f);
+		AudioSource.PlayClipAtPoint (SpawnSound, planeRigidbody.transform.position);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (health <= 0) {
-//			AudioSource.PlayClipAtPoint (DeathSound, rigidbody.transform.position);
+			AudioSource.PlayClipAtPoint (DeathSound, planeRigidbody.transform.position);
 			Destroy (gameObject);
 		}
 	}
@@ -52,6 +57,7 @@ public class Revenge : MonoBehaviour {
 				Missile clone = (Missile)Instantiate (missilePrefab,
 		            planeRigidbody.position + transform.up * -2,
 		            planeRigidbody.rotation);
+				AudioSource.PlayClipAtPoint (ActionSound, planeRigidbody.transform.position);
 				clone.owner = this.gameObject;
 				clone.target = target;
 				shootTimer = shootCooldown;
