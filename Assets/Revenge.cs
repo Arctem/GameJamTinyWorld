@@ -31,6 +31,9 @@ public class Revenge : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (target) {
+			planeRigidbody.velocity = planeRigidbody.velocity + Time.deltaTime *
+				(target.transform.position - transform.position +
+				 new Vector3(0.0f, preferredAltitude, 0.0f));
 		} else {
 			planeRigidbody.velocity = planeRigidbody.velocity + Time.deltaTime *
 				(owner.transform.position - transform.position +
