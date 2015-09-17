@@ -88,6 +88,11 @@ public class ToyBox : MonoBehaviour {
 			Time.timeScale = .2F; 
 			Destroy (gameObject);
 		}
+
+        //Invert the controls when backing up, like a real car would do
+        if (powerInput < 0)
+            turnInput = -turnInput;
+
 		carRigidbody.AddRelativeForce(0f, 0f, powerInput * speed);
 		carRigidbody.AddRelativeTorque(0f, turnInput * turnSpeed, 0f);
 		if (Vector3.Angle (carRigidbody.transform.forward, carRigidbody.velocity) <= 90) {
