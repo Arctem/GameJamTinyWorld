@@ -13,7 +13,7 @@ public class Hunter : MonoBehaviour {
 	public GameObject owner;
 	public Bullet bulletPrefab;
 	public int health = 2;
-	private Rigidbody rigidbody;
+	private Rigidbody rb;
 	private GameObject target;
 	private float jumpTimer = 0f;
 	private float shootTimer = 0f;
@@ -24,15 +24,15 @@ public class Hunter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rigidbody = GetComponent <Rigidbody>();
-		AudioSource.PlayClipAtPoint (SpawnSound, rigidbody.transform.position);
-	}
+		rb = GetComponent <Rigidbody>();
+        GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>().PlayOneShot(SpawnSound, 1f);
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		if (health <= 0) {
-			AudioSource.PlayClipAtPoint (DeathSound, rigidbody.transform.position);
-			Destroy (gameObject);
+            GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>().PlayOneShot(DeathSound, 1f);
+            Destroy (gameObject);
 		}
 	}
 
@@ -45,24 +45,24 @@ public class Hunter : MonoBehaviour {
 			if(offset.x < 0.0) {
 				//target is to the left
 				//this.transform.Rotate(Vector3.up * -turnSpeed);
-				this.rigidbody.AddRelativeTorque(0f, -turnSpeed, 0f);
+				this.rb.AddRelativeTorque(0f, -turnSpeed, 0f);
 			} else {
 				//target is to the right
 				//this.transform.Rotate(Vector3.up * turnSpeed);
-				this.rigidbody.AddRelativeTorque(0f, turnSpeed, 0f);
+				this.rb.AddRelativeTorque(0f, turnSpeed, 0f);
 			}
 			if(Mathf.Abs(offset.x) < 10.0 && offset.z > 0.0) {
 				//If we're facing mostly towards it and it's in front of us.
-				if(Vector3.Distance(rigidbody.position, target.transform.position) > shootRange) {
+				if(Vector3.Distance(rb.position, target.transform.position) > shootRange) {
 					if (jumpTimer < 0) {
-						this.rigidbody.AddRelativeForce(0f, jumpStrength, jumpStrength);
+						this.rb.AddRelativeForce(0f, jumpStrength, jumpStrength);
 						jumpTimer = jumpCooldown;
 					}
 				} else if (target != owner && shootTimer < 0) {
-					AudioSource.PlayClipAtPoint (ActionSound , rigidbody.transform.position);
-					Bullet clone = (Bullet) Instantiate(bulletPrefab,
-                  		rigidbody.position + transform.forward * 2 + new Vector3(0f, 1f, 0f),
-                        rigidbody.rotation);
+                    GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>().PlayOneShot(ActionSound, 1f);
+                    Bullet clone = (Bullet) Instantiate(bulletPrefab,
+                  		rb.position + transform.forward * 2 + new Vector3(0f, 1f, 0f),
+                        rb.rotation);
 					clone.GetComponent <Rigidbody>().velocity = transform.forward * bulletSpeed;
 					clone.owner = this.gameObject;
 					shootTimer = shootCooldown;
@@ -81,8 +81,8 @@ public class Hunter : MonoBehaviour {
 					continue;
 				}
 				if (currentBest) {
-					if(Vector3.Distance(test.transform.position, rigidbody.position) <
-					   Vector3.Distance(currentBest.transform.position, rigidbody.position)) {
+					if(Vector3.Distance(test.transform.position, rb.position) <
+					   Vector3.Distance(currentBest.transform.position, rb.position)) {
 						currentBest = test;
 					}
 				} else {

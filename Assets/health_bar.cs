@@ -16,11 +16,15 @@ public class health_bar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		playerHP = owner.GetComponent<ToyBox> ().health;
-		if (playerHP <= hp_change) {
-			img = gameObject.GetComponentInChildren<RawImage>();
-			Destroy(img);
-			hp_change -= 10;
-		}
+        if (owner != null)
+        {
+            playerHP = owner.GetComponent<ToyBox>().health;
+            if (playerHP <= hp_change)
+            {
+                img = gameObject.GetComponentInChildren<RawImage>();
+                Destroy(img);
+                hp_change -= 10;
+            }
+        }
 	}
 }

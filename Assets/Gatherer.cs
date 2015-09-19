@@ -6,7 +6,7 @@ public class Gatherer : MonoBehaviour {
 	public float speed = 2f;
 	public float turnSpeed = 100f;
 	public GameObject owner;
-	private Rigidbody rigidbody;
+	private Rigidbody rb;
 	private GameObject target;
 	public int health = 3;
 	//Sounds
@@ -16,15 +16,15 @@ public class Gatherer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rigidbody = GetComponent <Rigidbody>();
-		AudioSource.PlayClipAtPoint (SpawnSound, rigidbody.transform.position);
-	}
+		rb = GetComponent <Rigidbody>();
+        GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>().PlayOneShot(SpawnSound, 1f);
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		if (health <= 0) {
-			AudioSource.PlayClipAtPoint (DeathSound, rigidbody.transform.position);
-			Destroy (gameObject);
+            GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>().PlayOneShot(DeathSound, 1f);
+            Destroy (gameObject);
 		}
 	}
 
@@ -34,23 +34,23 @@ public class Gatherer : MonoBehaviour {
 			if(offset.x < 0.0) {
 				//target is to the left
 				//this.transform.Rotate(Vector3.up * -turnSpeed);
-				this.rigidbody.AddRelativeTorque(0f, -turnSpeed, 0f);
+				this.rb.AddRelativeTorque(0f, -turnSpeed, 0f);
 			} else {
 				//target is to the right
 				//this.transform.Rotate(Vector3.up * turnSpeed);
-				this.rigidbody.AddRelativeTorque(0f, turnSpeed, 0f);
+				this.rb.AddRelativeTorque(0f, turnSpeed, 0f);
 			}
 			if(Mathf.Abs(offset.x) < 10.0 && offset.z > 0.0) {
 				//If we're facing mostly towards it and it's in front of us.
-				this.rigidbody.AddRelativeForce(0f, 0f, speed);
+				this.rb.AddRelativeForce(0f, 0f, speed);
 			}
 		} else {
 			GameObject[] possibles = GameObject.FindGameObjectsWithTag("Resource");
 			GameObject currentBest = null;
 			foreach(GameObject test in possibles) {
 				if (currentBest) {
-					if(Vector3.Distance(test.transform.position, rigidbody.position) <
-					   Vector3.Distance(currentBest.transform.position, rigidbody.position)) {
+					if(Vector3.Distance(test.transform.position, rb.position) <
+					   Vector3.Distance(currentBest.transform.position, rb.position)) {
 						currentBest = test;
 					}
 				} else {
@@ -67,8 +67,8 @@ public class Gatherer : MonoBehaviour {
 				owner.GetComponent<ToyBox>().metal += 5;
 				target = null;
 			} else {
-				AudioSource.PlayClipAtPoint(ActionSound, rigidbody.transform.position);
-				target = owner;
+                GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>().PlayOneShot(ActionSound, 1f);
+                target = owner;
 			}
 		} else if (collision.gameObject.tag == "Bullet") {
 			health--;

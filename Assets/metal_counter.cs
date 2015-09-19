@@ -15,7 +15,10 @@ public class metal_counter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		txt.text = metal.ToString();
-		metal = (int) owner.GetComponent<ToyBox>().metal;
+        if (owner != null)
+        {
+            txt.text = metal.ToString();
+            metal = (int)owner.GetComponent<ToyBox>().metal;
+        }
 	}
 }
