@@ -6,7 +6,6 @@ public class Bullet : MonoBehaviour {
 
 	public float speed = 5.0f;
 	public GameObject owner;
-	private Rigidbody bulletRigidbody;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +14,10 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (Mathf.Abs(gameObject.GetComponent<Rigidbody>().position.x) > 100 | Mathf.Abs(gameObject.GetComponent<Rigidbody>().position.z) > 100)
+        {
+            Destroy(this.gameObject);
+        }
 	}
 
 	void OnCollisionEnter (Collision collision) {
