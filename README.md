@@ -2,6 +2,6 @@ A moving toybox tinyworld tower defense RTS game.
 
 Authors:
 
-Russel White
+Russell White
 Andres Quan
 Chris Vigil
